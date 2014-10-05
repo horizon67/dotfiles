@@ -1,57 +1,59 @@
-set nocompatible               " be iMproved
-filetype off                   " required!
-filetype plugin indent on      " required!
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+if 1
+  set nocompatible               " be iMproved
+  filetype off                   " required!
+  filetype plugin indent on      " required!
+  if has('vim_starting')
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
+  endif
+
+   " Required:
+   call neobundle#rc(expand('~/.vim/bundle/'))
+
+   " Let NeoBundle manage NeoBundle
+   NeoBundleFetch 'Shougo/neobundle.vim'
+
+   " My Bundles here:
+   NeoBundle 'Shougo/neocomplcache'
+   NeoBundle 'Shougo/neosnippet.vim'
+   NeoBundle 'Shougo/neosnippet-snippets'
+   NeoBundle 'kien/ctrlp.vim'
+   NeoBundle 'flazz/vim-colorschemes'
+   NeoBundle 'slim-template/vim-slim'
+   NeoBundle 'tpope/vim-endwise'
+
+   " インデントに色を付けて見やすくする
+   NeoBundle 'nathanaelkane/vim-indent-guides'
+   " vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
+   let g:indent_guides_enable_on_vim_startup = 1
+
+   " コメントON/OFFを手軽に実行
+   NeoBundle 'tomtom/tcomment_vim'
+
+   " Rails向けのコマンドを提供する
+   NeoBundle 'tpope/vim-rails'
+
+   " ファイルをtree表示してくれる
+   NeoBundle 'scrooloose/nerdtree'
+
+   " Gitを便利に使う
+   NeoBundle 'tpope/vim-fugitive'
+   " grep検索の実行後にQuickFix Listを表示する
+   autocmd QuickFixCmdPost *grep* cwindow
+   " ステータス行に現在のgitブランチを表示する
+   set statusline+=%{fugitive#statusline()}
+
+   " You can specify revision/branch/tag.
+   NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+
+   call neobundle#end()
+
+   " Required:
+   filetype plugin indent on
+
+   " If there are uninstalled bundles found on startup,
+   " this will conveniently prompt you to install them.
+   NeoBundleCheck
 endif
-
- " Required:
- call neobundle#begin(expand('~/.vim/bundle/'))
-
- " Let NeoBundle manage NeoBundle
- NeoBundleFetch 'Shougo/neobundle.vim'
-
- " My Bundles here:
- NeoBundle 'Shougo/neocomplcache'
- NeoBundle 'Shougo/neosnippet.vim'
- NeoBundle 'Shougo/neosnippet-snippets'
- NeoBundle 'kien/ctrlp.vim'
- NeoBundle 'flazz/vim-colorschemes'
- NeoBundle 'slim-template/vim-slim'
- NeoBundle 'tpope/vim-endwise'
-
- " インデントに色を付けて見やすくする
- NeoBundle 'nathanaelkane/vim-indent-guides'
- " vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
- let g:indent_guides_enable_on_vim_startup = 1
-
- " コメントON/OFFを手軽に実行
- NeoBundle 'tomtom/tcomment_vim'
-
- " Rails向けのコマンドを提供する
- NeoBundle 'tpope/vim-rails'
-
- " ファイルをtree表示してくれる
- NeoBundle 'scrooloose/nerdtree'
-
- " Gitを便利に使う
- NeoBundle 'tpope/vim-fugitive'
- " grep検索の実行後にQuickFix Listを表示する
- autocmd QuickFixCmdPost *grep* cwindow
- " ステータス行に現在のgitブランチを表示する
- set statusline+=%{fugitive#statusline()}
-
- " You can specify revision/branch/tag.
- NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-
- call neobundle#end()
-
- " Required:
- filetype plugin indent on
-
- " If there are uninstalled bundles found on startup,
- " this will conveniently prompt you to install them.
- NeoBundleCheck
 "-------------------------------------------------------------------------------
 " 検索系
 "-------------------------------------------------------------------------------
