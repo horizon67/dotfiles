@@ -6,10 +6,7 @@ if 1
     set runtimepath+=~/.vim/bundle/neobundle.vim/
   endif
 
-   " Required:
-   call neobundle#rc(expand('~/.vim/bundle/'))
-
-   " Let NeoBundle manage NeoBundle
+   call neobundle#begin(expand('~/.vim/bundle/'))
    NeoBundleFetch 'Shougo/neobundle.vim'
 
    " My Bundles here:
@@ -20,11 +17,6 @@ if 1
    NeoBundle 'flazz/vim-colorschemes'
    NeoBundle 'slim-template/vim-slim'
    NeoBundle 'tpope/vim-endwise'
-
-   " インデントに色を付けて見やすくする
-   NeoBundle 'nathanaelkane/vim-indent-guides'
-   " vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
-   let g:indent_guides_enable_on_vim_startup = 1
 
    " コメントON/OFFを手軽に実行
    NeoBundle 'tomtom/tcomment_vim'
@@ -78,6 +70,7 @@ au BufNewFile,BufRead *.erb set nowrap tabstop=2 shiftwidth=2
 au BufNewFile,BufRead *.rb set nowrap tabstop=2 shiftwidth=2
 au BufNewFile,BufRead *.jbuilder set nowrap tabstop=2 shiftwidth=2
 au BufNewFile,BufRead *.slim set nowrap tabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.rake set nowrap tabstop=2 shiftwidth=2
 
 " color
 :colorscheme darkblue
