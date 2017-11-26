@@ -1,7 +1,8 @@
-# NeoBundle
+# dein
 
 ```
-curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh
-sh ./install.sh
-rm -rf install.sh
+$ mkdir -p ~/.cache/dein
+$ cd ~/.cache/dein
+$ curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+$ sh ./installer.sh ~/.cache/dein
 ```

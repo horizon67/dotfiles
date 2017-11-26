@@ -1,51 +1,31 @@
-if 1
-  set nocompatible               " be iMproved
-  filetype off                   " required!
-  filetype plugin indent on      " required!
-  if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
-  endif
-
-   call neobundle#begin(expand('~/.vim/bundle/'))
-   NeoBundleFetch 'Shougo/neobundle.vim'
-
-   " My Bundles here:
-   NeoBundle 'Shougo/neocomplcache'
-   NeoBundle 'Shougo/neosnippet.vim'
-   NeoBundle 'Shougo/neosnippet-snippets'
-   NeoBundle 'kien/ctrlp.vim'
-   NeoBundle 'flazz/vim-colorschemes'
-   NeoBundle 'slim-template/vim-slim'
-   NeoBundle 'tpope/vim-endwise'
-
-   " コメントON/OFFを手軽に実行
-   NeoBundle 'tomtom/tcomment_vim'
-
-   " Rails向けのコマンドを提供する
-   NeoBundle 'tpope/vim-rails'
-
-   " ファイルをtree表示してくれる
-   NeoBundle 'scrooloose/nerdtree'
-
-   " Gitを便利に使う
-   NeoBundle 'tpope/vim-fugitive'
-   " grep検索の実行後にQuickFix Listを表示する
-   autocmd QuickFixCmdPost *grep* cwindow
-   " ステータス行に現在のgitブランチを表示する
-   set statusline+=%{fugitive#statusline()}
-
-   " You can specify revision/branch/tag.
-   NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-
-   call neobundle#end()
-
-   " Required:
-   filetype plugin indent on
-
-   " If there are uninstalled bundles found on startup,
-   " this will conveniently prompt you to install them.
-   NeoBundleCheck
+if &compatible
+  set nocompatible
 endif
+
+set runtimepath^=~/.cache/dein/repos/github.com/Shougo/dein.vim
+
+
+call dein#begin(expand('~/.vim/bundle'))
+call dein#add('Shougo/dein.vim')
+call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+
+call dein#add('Shougo/neocomplete.vim')
+call dein#add('Shougo/neomru.vim')
+call dein#add('Shougo/neocomplcache')
+call dein#add('Shougo/neosnippet-snippets')
+call dein#add('kien/ctrlp.vim')
+call dein#add('flazz/vim-colorschemes')
+call dein#add('slim-template/vim-slim')
+call dein#add('tpope/vim-endwise')
+call dein#add('tomtom/tcomment_vim')
+call dein#add('tpope/vim-rails')
+call dein#add('scrooloose/nerdtree')
+call dein#add('tpope/vim-fugitive')
+call dein#end()
+if dein#check_install()
+  call dein#install()
+endif
+
 "-------------------------------------------------------------------------------
 " 検索系
 "-------------------------------------------------------------------------------
@@ -61,16 +41,11 @@ set history=1000                   "コマンド、検索パターンを100個�
 set expandtab                      "Insertモードで<tab> を挿入するのに、適切な数の空白を使う
 set tabstop=2                      "ファイル内の <tab> が対応する空白の数
 set smarttab                       "行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする
-
-"タブ幅をリセット
-au BufNewFile,BufRead * set tabstop=4 shiftwidth=4
-au BufNewFile,BufRead *.html set nowrap tabstop=2 shiftwidth=2
-au BufNewFile,BufRead *.yml set nowrap tabstop=2 shiftwidth=2
-au BufNewFile,BufRead *.erb set nowrap tabstop=2 shiftwidth=2
-au BufNewFile,BufRead *.rb set nowrap tabstop=2 shiftwidth=2
-au BufNewFile,BufRead *.jbuilder set nowrap tabstop=2 shiftwidth=2
-au BufNewFile,BufRead *.slim set nowrap tabstop=2 shiftwidth=2
-au BufNewFile,BufRead *.rake set nowrap tabstop=2 shiftwidth=2
+set shiftwidth=2
+set softtabstop=0
+set pastetoggle=<C-E>
 
 " color
-:colorscheme darkblue
+syntax on
+colorscheme darkblue
+map <C-n> :NERDTreeToggle<CR>
