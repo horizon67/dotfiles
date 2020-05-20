@@ -79,4 +79,6 @@ endif
 " color
 syntax on
 colorscheme darkblue
+
 map <C-n> :NERDTreeToggle<CR>
+let g:go_term_mode = 'split'
