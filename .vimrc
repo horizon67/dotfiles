@@ -2,11 +2,6 @@ if &compatible
   set nocompatible
 endif
 
-syntax on
-
-filetype off
-filetype plugin indent on
-
 call plug#begin('~/.vim/plugged')
 Plug 'Shougo/vimproc.vim', {'build': 'make'}
 
