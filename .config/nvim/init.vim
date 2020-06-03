@@ -5,36 +5,33 @@ endif
 set runtimepath^=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 
-call dein#begin(expand('~/.vim/bundle'))
-call dein#add('Shougo/dein.vim')
-call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+call plug#begin('~/.vim/plugged')
+Plug 'Shougo/vimproc.vim', {'build': 'make'}
 
-call dein#add('bronson/vim-trailing-whitespace')
-call dein#add('rhysd/accelerated-jk')
-call dein#add('Shougo/deoplete.nvim')
-call dein#add('Shougo/neocomplete.vim')
-call dein#add('Shougo/neomru.vim')
-call dein#add('kien/ctrlp.vim')
-call dein#add('flazz/vim-colorschemes')
-call dein#add('slim-template/vim-slim')
-call dein#add('tpope/vim-endwise')
-call dein#add('tomtom/tcomment_vim')
-call dein#add('tpope/vim-rails')
-call dein#add('scrooloose/nerdtree')
-call dein#add('tpope/vim-fugitive')
-call dein#add('kchmck/vim-coffee-script')
-call dein#add('rking/ag.vim')
-call dein#add('elixir-lang/vim-elixir')
-call dein#add('awetzel/elixir.nvim')
-call dein#add('avdgaag/vim-phoenix')
-call dein#add('slim-template/vim-slim')
-call dein#add('posva/vim-vue')
-call dein#add('fatih/vim-go')
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'rhysd/accelerated-jk'
+Plug 'kien/ctrlp.vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'slim-template/vim-slim'
+Plug 'tpope/vim-endwise'
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-rails'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'rking/ag.vim'
+Plug 'elixir-lang/vim-elixir'
+Plug 'awetzel/elixir.nvim'
+Plug 'avdgaag/vim-phoenix'
+Plug 'posva/vim-vue'
 
-call dein#end()
-if dein#check_install()
-  call dein#install()
-endif
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'mattn/vim-goimports'
+
+call plug#end()
 
 "-------------------------------------------------------------------------------
 " 検索系
@@ -82,3 +79,14 @@ colorscheme darkblue
 
 map <C-n> :NERDTreeToggle<CR>
 let g:go_term_mode = 'split'
+
+"-------------------------------------------------------------------------------
+" vim-lsp設定
+"-------------------------------------------------------------------------------
+nnoremap <silent> <Leader>d :LspDefinition<CR>
+nnoremap <silent> <Leader>h :LspHover<CR>
+nnoremap <silent> <Leader>r :LspReferences<CR>
+nnoremap <silent> <Leader>i :LspImplementation<CR>
+nnoremap <silent> <Leader>n :LspNextError<CR>
+nnoremap <silent> <Leader>s :split \| :LspDefinition <CR>
+nnoremap <silent> <Leader>v :vsplit \| :LspDefinition <CR>

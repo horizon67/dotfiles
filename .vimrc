@@ -2,36 +2,37 @@ if &compatible
   set nocompatible
 endif
 
-set runtimepath^=~/.cache/dein/repos/github.com/Shougo/dein.vim
+syntax on
 
+filetype off
+filetype plugin indent on
 
-call dein#begin(expand('~/.vim/bundle'))
-call dein#add('Shougo/dein.vim')
-call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+call plug#begin('~/.vim/plugged')
+Plug 'Shougo/vimproc.vim', {'build': 'make'}
 
-call dein#add('Shougo/neocomplete.vim')
-call dein#add('Shougo/neomru.vim')
-call dein#add('Shougo/neosnippet.vim')
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'rhysd/accelerated-jk'
+Plug 'kien/ctrlp.vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'slim-template/vim-slim'
+Plug 'tpope/vim-endwise'
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-rails'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'rking/ag.vim'
+Plug 'elixir-lang/vim-elixir'
+Plug 'avdgaag/vim-phoenix'
+Plug 'posva/vim-vue'
 
-call dein#add('kien/ctrlp.vim')
-call dein#add('flazz/vim-colorschemes')
-call dein#add('slim-template/vim-slim')
-call dein#add('tpope/vim-endwise')
-call dein#add('tomtom/tcomment_vim')
-call dein#add('tpope/vim-rails')
-call dein#add('scrooloose/nerdtree')
-call dein#add('tpope/vim-fugitive')
-call dein#add('kchmck/vim-coffee-script')
-call dein#add('rking/ag.vim')
-call dein#add('elixir-lang/vim-elixir')
-call dein#add('avdgaag/vim-phoenix')
-call dein#add('slim-template/vim-slim')
-call dein#add('alpaca-tc/alpaca_tags')
-call dein#add('posva/vim-vue')
-call dein#end()
-if dein#check_install()
-  call dein#install()
-endif
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'mattn/vim-lsp-settings'
+" Plug 'mattn/vim-goimports'
+call plug#end()
 
 "-------------------------------------------------------------------------------
 " 検索系
@@ -52,7 +53,41 @@ set shiftwidth=2
 set softtabstop=0
 set pastetoggle=<C-E>
 
+if has("autocmd")
+  "ファイルタイプの検索を有効にする
+  filetype plugin on
+  "ファイルタイプに合わせたインデントを利用
+  filetype indent on
+  "sw=softtabstop, sts=shiftwidth, ts=tabstop, et=expandtabの略
+  autocmd FileType c           setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType html        setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType ruby        setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType js          setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType zsh         setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType python      setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType scala       setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType json        setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType css         setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType scss        setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType sass        setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType javascript  setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType go          setlocal sw=4 ts=4 noexpandtab
+endif
+
 " color
 syntax on
 colorscheme darkblue
+
 map <C-n> :NERDTreeToggle<CR>
+let g:go_term_mode = 'split'
+
+"-------------------------------------------------------------------------------
+" vim-lsp設定
+"-------------------------------------------------------------------------------
+nnoremap <silent> <Leader>d :LspDefinition<CR>
+nnoremap <silent> <Leader>h :LspHover<CR>
+nnoremap <silent> <Leader>r :LspReferences<CR>
+nnoremap <silent> <Leader>i :LspImplementation<CR>
+nnoremap <silent> <Leader>n :LspNextError<CR>
+nnoremap <silent> <Leader>s :split \| :LspDefinition <CR>
+nnoremap <silent> <Leader>v :vsplit \| :LspDefinition <CR>
