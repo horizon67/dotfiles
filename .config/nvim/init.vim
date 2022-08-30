@@ -9,27 +9,25 @@ call plug#begin('~/.vim/plugged')
 Plug 'Shougo/vimproc.vim', {'build': 'make'}
 
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'rhysd/accelerated-jk'
-Plug 'kien/ctrlp.vim'
+Plug 'rainbowhxch/accelerated-jk.nvim'
 Plug 'flazz/vim-colorschemes'
 Plug 'slim-template/vim-slim'
 Plug 'tpope/vim-endwise'
 Plug 'tomtom/tcomment_vim'
-Plug 'tpope/vim-rails'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'rking/ag.vim'
+Plug 'tpope/vim-rails'
 Plug 'elixir-lang/vim-elixir'
 Plug 'awetzel/elixir.nvim'
 Plug 'avdgaag/vim-phoenix'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'posva/vim-vue'
-
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'mattn/vim-goimports'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'sebdah/vim-delve', { 'for': ['go'] }
+Plug 'junegunn/seoul256.vim'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 call plug#end()
 
@@ -70,23 +68,18 @@ if has("autocmd")
   autocmd FileType scss        setlocal sw=2 sts=2 ts=2 et
   autocmd FileType sass        setlocal sw=2 sts=2 ts=2 et
   autocmd FileType javascript  setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType json        setlocal sw=2 sts=2 ts=2 et
   autocmd FileType go          setlocal sw=4 ts=4 noexpandtab
+  autocmd FileType go nmap <silent> ;d :DlvToggleBreakpoint<CR>
 endif
+nmap  gd (coc-definition)
 
 " color
 syntax on
-colorscheme darkblue
+colo seoul256
 
 map <C-n> :NERDTreeToggle<CR>
 let g:go_term_mode = 'split'
 
-"-------------------------------------------------------------------------------
-" vim-lsp設定
-"-------------------------------------------------------------------------------
-nnoremap <silent> <Leader>d :LspDefinition<CR>
-nnoremap <silent> <Leader>h :LspHover<CR>
-nnoremap <silent> <Leader>r :LspReferences<CR>
-nnoremap <silent> <Leader>i :LspImplementation<CR>
-nnoremap <silent> <Leader>n :LspNextError<CR>
-nnoremap <silent> <Leader>s :split \| :LspDefinition <CR>
-nnoremap <silent> <Leader>v :vsplit \| :LspDefinition <CR>
+
+runtime coc.vim
