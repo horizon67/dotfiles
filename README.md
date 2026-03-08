@@ -1,14 +1,8 @@
-# vim-plug
+# dotfiles
 
-```
-$ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-$ vim
-:PlugInstall
-```
-
-# neovim(mac)
-
-```
-$ brew install neovim
+## Setup
+```bash
+git clone git@github.com:yourname/dotfiles.git ~/dotfiles
+brew install neovim
+~/dotfiles/install.sh
 ```
