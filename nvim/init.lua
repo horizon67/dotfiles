@@ -176,3 +176,4 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "左ウィンドウへ" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "右ウィンドウへ" })
+vim.keymap.set("n", "<leader>cp", ':let @+ = expand("%:p")<CR>', { desc = "パスをコピー" })
